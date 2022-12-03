@@ -1,0 +1,68 @@
+.main {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100vw;
+    height: 100vh;
+    padding-top: 50px;
+  }
+  
+  .Auth-form {
+    width: 520px;
+    box-shadow: rgb(0 0 0 / 16%) 1px 1px 10px;
+    padding-top: 20px;
+    padding-bottom: 20px;
+    border-radius: 8px;
+    margin-top: 150px;
+  }
+  
+  .Auth-form-content {
+    padding-left: 12%;
+    padding-right: 12%;
+  }
+  
+  .Auth-form-title {
+    text-align: center;
+    margin-bottom: .5em;
+    font-size: 24px;
+    color: rgb(34, 34, 34);
+    font-weight: 800;
+  }
+  
+  label {
+    font-size: 14px;
+    font-weight: 600;
+    color: rgb(34, 34, 34);
+  }
+
+  .name {
+    display: flex;
+    width: 100%;
+  }
+
+  #first_name{
+      margin-right: 15px;
+  }
+
+  .checks {
+    display: flex;
+  }
+
+  .gender_option{
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    margin-top: 10px;
+    margin-bottom: 10px;
+  }
+
+
+  #male{
+    margin-left: 75px;
+    margin-right: 20px;
+  }
+
+  span{
+    font-size: 14px;
+    margin-left: -4px;
+  }

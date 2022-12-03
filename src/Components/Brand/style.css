@@ -1,0 +1,14 @@
+.brand{
+    position: absolute;
+    left: 2%;
+    top: 3%;
+    font-weight: bold;
+    color: #0d6efd;
+    font-size: 23px;
+}
+i{
+    color:#f7ab00;
+    font-size: 23px;
+    font-weight: bold;
+
+}
