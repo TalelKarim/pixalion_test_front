@@ -18,11 +18,12 @@ p {
 
 .navbar {
   padding: 15px 10px;
-  background: #fff;
   border: none;
   border-radius: 0;
   margin-bottom: 40px;
   box-shadow: 1px 1px 3px rgba(0, 0, 0, 0.1);
+  background-color: #fff;
+  display: none;
 }
 
 .navbar-btn {
@@ -43,9 +44,10 @@ p {
 ----------------------------------------------------- */
 
 #sidebar {
+  position: fixed;
   min-width: 250px;
   max-width: 250px;
-  min-height: 100vh;
+  height: 100vh;
   background: #33383e;
   /* background-color: #252425; */
   color: #9c9fa2;
@@ -140,4 +142,9 @@ a.article:hover {
 
 .dropicon {
   margin-right: 5px;
+}
+
+
+.updateIcon{
+  margin-right: 15px;
 }

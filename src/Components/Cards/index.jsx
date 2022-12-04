@@ -2,7 +2,6 @@ import React from 'react';
 import './style.css';
 import { faEnvelope } from '@fortawesome/free-solid-svg-icons';
 import { faComment } from '@fortawesome/free-solid-svg-icons';
-import PersonPreview from '../../pages/personPreview';
 import { useState } from 'react';
 import Button from 'react-bootstrap/Button';
 import Modal from 'react-bootstrap/Modal';
@@ -59,7 +58,7 @@ export default function Cards(props) {
                       <FaLinkedin className='previewIcon' style= {{ color: "#0e76a8"}}/>
           </div>
           <Button variant="secondary" onClick={handleClose}>
-            Close
+            I understand
           </Button>
           <Button variant="primary" onClick={handleClose}>
             Save Changes

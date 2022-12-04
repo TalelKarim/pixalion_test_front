@@ -59,18 +59,7 @@ export default function Signup() {
     data.append('speciality', speciality);
     data.append('isInstructor', isInstructor);
     data.append('photo', file);
-    console.log(
-      firstName,
-      lastName,
-      nickName,
-      gender,
-      Birthday,
-      speciality,
-      mail,
-      password,
-      isInstructor
-    );
-
+    
     axios
       .post('http://localhost:5000/user/register', data)
       .then((response) => {

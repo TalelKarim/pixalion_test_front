@@ -21,7 +21,7 @@ const Card = styled.div`
 
 export default function Dashboard() {
   return (
-    <div className="MainI">
+    <div className="Main">
       <div className="metrics">
         <Card>
           <h6> Enrolled Courses </h6>

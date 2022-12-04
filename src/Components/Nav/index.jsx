@@ -1,4 +1,4 @@
-import React, { useContext } from 'react';
+import React, { useContext, useState } from 'react';
 import styled from 'styled-components';
 import './style.css';
 import { Link } from 'react-router-dom';
@@ -6,13 +6,17 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faGauge } from '@fortawesome/free-solid-svg-icons';
 import { faPersonChalkboard } from '@fortawesome/free-solid-svg-icons';
 import { faBook } from '@fortawesome/free-solid-svg-icons';
-import { faGear } from '@fortawesome/free-solid-svg-icons';
+import { faUser } from '@fortawesome/free-solid-svg-icons';
 import { faRightFromBracket } from '@fortawesome/free-solid-svg-icons';
-import { useState } from 'react';
-import Instructors from '../Student/InstructorsList';
+import { faPen } from '@fortawesome/free-solid-svg-icons';
 import { InstructorContext } from '../../utils/context';
 import { userContext } from '../../utils/context/user';
-import { useEffect } from 'react';
+import Button from 'react-bootstrap/Button';
+import Modal from 'react-bootstrap/Modal';
+import {faDollar} from  '@fortawesome/free-solid-svg-icons';
+import axios from 'axios';
+import { useNavigate } from 'react-router-dom'; 
+
 const StyledLink = styled(Link)`
   padding: 5px;
   color: #fff;
@@ -25,17 +29,62 @@ const StyledLink = styled(Link)`
 `;
 
 export default function Nav() {
- 
-
-
-  //  const [instructor, setInstructor] = useState(true)
+   const {user,setUser} = useContext(userContext);
   const { instructor, setInstructor } = useContext(InstructorContext);
-  const {user,setUser} = useContext(userContext);
+
+
+   const [show, setShow] = useState(false);
+    const handleClose = () => setShow(false);
+    const handleShow = () => setShow(true);
+
+
+    ///data to update profile 
+  const navigate = useNavigate();
+  const [firstName, setfirstName] = useState(user.firstName);
+  const [lastName, setlastName] = useState(user.lastName);
+  const [nickName, setnickName] = useState(user.nickName);
+  const [Birthday, setBirthday] = useState(user.Birthday);
+  const [gender, setGender] = useState(user.gender);
+  const [speciality, setSpeciality] = useState(user.speciality);
+  const [mail, setMail] = useState(user.mail);
+  const [password, setPassword] = useState("0000");
+  const [file, setFile] = useState(null);
+  const isInstructor = instructor;
 
   const initializeUser = () => {
     setUser({})
   }
-  console.log(instructor, user);
+
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+
+  
+    const data = new FormData();
+    data.append('firstName', firstName);
+    data.append('lastName', lastName);
+    data.append('nickName', nickName);
+    data.append('Birthday', Birthday);
+    data.append('gender', gender);
+    data.append('mail', mail);
+    data.append('speciality', speciality);
+    data.append('isInstructor', isInstructor);
+    data.append('password', password)
+    data.append('imageUrl', user.imageUrl)
+   
+    axios
+      .put( `http://localhost:5000/user/update/${user._id}`, data)
+      .then((response) => {
+          console.log(response)
+          setUser(response.data)
+      })
+      .catch((err) => {
+        console.log(err.stack);
+      });
+  };
+
+
+  console.log(user);
   return (
     <nav id="sidebar">
       <div className="sidebar-header">
@@ -81,13 +130,147 @@ export default function Nav() {
           </StyledLink>
         </li>
         <li>
-          <FontAwesomeIcon className="dropicon" icon={faGear} />
-          <StyledLink to="/homestudent/settings">Settings</StyledLink>
+          <FontAwesomeIcon className="dropicon" icon={faUser} />
+          <StyledLink 
+            onClick={() => {
+               setShow(true)
+            }}
+          > My Profile </StyledLink>
         </li>
         <li>
           <FontAwesomeIcon className="dropicon" icon={faRightFromBracket} />
           <StyledLink to='/'  onClick = {initializeUser}> Sign Out</StyledLink>
         </li>
+        
+      <Modal show={show} onHide={handleClose}>
+        <Modal.Header closeButton>
+          <div className="previewtitlecourse">
+              <Modal.Title>
+         <FontAwesomeIcon className='updateIcon' icon={faPen} />
+
+                 Update your profile</Modal.Title>
+          </div>
+        </Modal.Header>
+        <Modal.Body>
+             <img className='previewimgcourse' src={user.imageUrl} />
+        
+        <div className="form-group mt-1" id="first_name">
+                <label>First Name</label>
+                <input
+                  type="text"
+                  className="form-control mt-1"
+                  placeholder="new firstname"
+                  onChange={(e) => {
+                    setfirstName(e.target.value);
+                  }}
+                  defaultValue={user.firstName}
+                  required
+                />
+              </div>
+
+             <div className="form-group mt-1">
+                <label>Last name</label>
+                <input
+                  type="text"
+                  className="form-control mt-1"
+                  placeholder="new lastname"
+                  onChange={(e) => {
+                    setlastName(e.target.value);
+                  }}
+                  required
+                  defaultValue={user.lastName}
+                />
+              </div>
+            
+
+            <div className="form-group mt-1">
+              <label>Nickname</label>
+              <input
+                type="text"
+                className="form-control mt-1"
+                placeholder="new Nickname"
+                required
+                onChange={(e) => {
+                  setnickName(e.target.value);
+                }}
+                defaultValue={user.nickName}
+
+              />
+            </div>
+
+             <div className="form-group mt-1">
+              <label for="birthday">Speciality:</label>
+              <input
+                type="text"
+                id="speciality"
+                className="form-control mt-1"
+                required
+                onChange={(e) => {
+                  setSpeciality(e.target.value);
+                }}
+                defaultValue={user.speciality}
+              />
+            </div>
+
+            <div className="form-group mt-1">
+              <label for="birthday">Birthday:</label>
+              <input
+                type="date"
+                id="birthday"
+                className="form-control mt-1"
+                required
+                onChange={(e) => {
+                  setBirthday(e.target.value);
+                }}
+                defaultValue={user.Birthday}
+              />
+            </div>
+
+           
+
+                 <div className="form-group mt-1">
+                <label>Email account</label>
+                <input
+                  type="email"
+                  className="form-control mt-1"
+                  placeholder="new email"
+                  required
+                  onChange={(e) => {
+                    setMail(e.target.value);
+                  }}
+                  defaultValue={user.mail}
+                />
+                 </div>
+
+                  <div className="form-group mt-1">
+                <label>Password</label>
+                <input
+                  type="password"
+                  className="form-control mt-1"
+                  placeholder="new password"
+                  required
+                  onChange={(e) => {
+                    setPassword(e.target.value);
+                  }}
+                  defaultValue={password}
+                />
+              </div>
+              
+              
+
+        </Modal.Body>
+        <Modal.Footer>
+          <Button variant="secondary" onClick={handleClose}>
+            Close
+          </Button>
+          <Button variant="primary" onClick={(e) => {
+            handleSubmit(e)
+            handleClose()
+          }}>
+            Apply Changes
+          </Button>
+        </Modal.Footer>
+      </Modal>
       </ul>
     </nav>
   );

@@ -1,6 +1,7 @@
 .MainInstructor {
   width: 100%;
   height: 100vh;
+  padding-left: 250px;
 }
 
 .metricsInstructor {

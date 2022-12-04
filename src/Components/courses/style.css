@@ -1,9 +1,12 @@
-.container {
-  width: 100%;
+.containercourses {
   height: auto;
+  width: 90%;
+  padding-left: 50px;
+  padding-right: 60px;
   display: flex;
   justify-content: center;
   align-items: center;
+  transform: translateX(210px);
 }
 
 .ListCourses {

@@ -4,9 +4,7 @@ import { faCartShopping } from '@fortawesome/free-solid-svg-icons';
 import { useState } from 'react';
 import Button from 'react-bootstrap/Button';
 import Modal from 'react-bootstrap/Modal';
-import {FaCgDollar} from 'react-icons/fa';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import {faMoneyBill} from  '@fortawesome/free-solid-svg-icons';
 import {faDollar} from  '@fortawesome/free-solid-svg-icons';
 
 export default function CourseCard(props) {
@@ -52,7 +50,7 @@ export default function CourseCard(props) {
             Close
           </Button>
           <Button variant="primary" onClick={handleClose}>
-            Save Changes
+            I understand
           </Button>
         </Modal.Footer>
       </Modal>

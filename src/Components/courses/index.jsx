@@ -71,7 +71,7 @@ export default function Courses() {
   });
 
   return (
-    <div className="container">
+    <div className="containercourses">
       {dataLoaded ? (
         <div className="ListCourses">
           <div className="input-group rounded">
@@ -114,6 +114,7 @@ export default function Courses() {
                       photo={ele.imageUrl}
                       name={ele.Name}
                       category={ele.Category}
+                      description = {ele.Description}
                     />
                   );
                 })
