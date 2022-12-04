@@ -13,10 +13,10 @@ import { userContext } from '../../../utils/context/user';
 export default function Instructors() {
   const [instructorsList, setInstructorsList] = useState([]);
   const [searchResult, setSearchResult] = useState([]);
-  const [loading, setLoading] = useState(false);
+  const [loading, setLoading] = useState(true);
   const [search, setSearch] = useState('');
   const [open, setOpen] = useState(false);
-  const [dataLoaded, setDataLoaded] = useState(true);
+  const [dataLoaded, setDataLoaded] = useState(false);
   
   const {user, setUser} = useContext(userContext)
   
@@ -39,8 +39,6 @@ export default function Instructors() {
 
   const handleSearch = async () => {
     try {
-       
-
       setLoading(true);
       const { data } = await axios.get(
         `http://localhost:5000/user/filter?search=${search}&isInstructor=true`, config
@@ -51,14 +49,18 @@ export default function Instructors() {
       console.log('error');
     }
   };
-  axios
+
+  useEffect(() => {
+   axios
     .get('http://localhost:5000/user/check?isInstructor=true', config)
     .then((response) => {
       setDataLoaded(true);
       setInstructorsList(response.data.filteredUsers);
     })
     .catch((err) => console.log(err.stack));
-
+ 
+  }, [])
+ 
   useEffect(() => {
     document.addEventListener('mousedown', (event) => {
       if (!menuRef.current.contains(event.target)) {

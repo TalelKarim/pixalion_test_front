@@ -19,6 +19,7 @@ export default function Container(props) {
             description={ele.Description}
             photo={ele.imageUrl}
             date={ele.Date}
+            id={ele._id}
           />
         );
       })}

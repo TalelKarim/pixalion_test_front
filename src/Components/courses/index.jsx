@@ -52,14 +52,15 @@ export default function Courses() {
       console.log(error);
     }
   };
-
-  axios
+ 
+   useEffect(() => { axios
     .get('http://localhost:5000/course', config)
     .then((response) => {
       setDataLoaded(true);
       setcoursesList(response.data);
     })
-    .catch((err) => console.log(err.stack));
+    .catch((err) => console.log(err.stack));}, [])
+ 
 
   useEffect(() => {
     document.addEventListener('mousedown', (event) => {

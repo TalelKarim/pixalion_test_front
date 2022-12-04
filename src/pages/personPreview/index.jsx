@@ -1,40 +1,34 @@
-import React from 'react';
+import React, { useState } from 'react';
 import Button from 'react-bootstrap/Button';
 import Modal from 'react-bootstrap/Modal';
-import axios from 'axios';
-import { useState } from 'react';
 
-export default function PersonPreview({showPreview}) {
-    const [show, setShow] = useState(showPreview)
-    const handleClose = () => setShow(false);
+function Example() {
+  const [show, setShow] = useState(false);
 
-  return  <>
-    
+  const handleClose = () => setShow(false);
+  const handleShow = () => setShow(true);
 
-      <Modal
-        show={show}
-        onHide={handleClose}
-        backdrop="static"
-        keyboard={false}
-      >
+  return (
+    <>
+      <Button variant="primary" onClick={handleShow}>
+        Launch demo modal
+      </Button>
+
+      <Modal show={show} onHide={handleClose}>
         <Modal.Header closeButton>
-          <Modal.Title>Name </Modal.Title>
+          <Modal.Title>Modal heading</Modal.Title>
         </Modal.Header>
-        <Modal.Body>
-         
-        </Modal.Body>
-
+        <Modal.Body>Woohoo, you're reading this text in a modal!</Modal.Body>
         <Modal.Footer>
           <Button variant="secondary" onClick={handleClose}>
             Close
           </Button>
-          <Button
-            variant="primary"
-            onClick={handleClose}
-          >
-            Ok
+          <Button variant="primary" onClick={handleClose}>
+            Save Changes
           </Button>
         </Modal.Footer>
       </Modal>
-    </>;
+    </>
+  );
 }
+

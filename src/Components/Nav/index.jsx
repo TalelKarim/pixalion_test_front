@@ -12,6 +12,7 @@ import { useState } from 'react';
 import Instructors from '../Student/InstructorsList';
 import { InstructorContext } from '../../utils/context';
 import { userContext } from '../../utils/context/user';
+import { useEffect } from 'react';
 const StyledLink = styled(Link)`
   padding: 5px;
   color: #fff;
@@ -24,6 +25,9 @@ const StyledLink = styled(Link)`
 `;
 
 export default function Nav() {
+ 
+
+
   //  const [instructor, setInstructor] = useState(true)
   const { instructor, setInstructor } = useContext(InstructorContext);
   const {user,setUser} = useContext(userContext);

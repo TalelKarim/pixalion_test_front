@@ -46,11 +46,7 @@ export default function Signup() {
   const handleRegister = (e) => {
     e.preventDefault();
 
-    const config = {
-      headers: {
-        'content-type': 'multipart/form-data',
-      },
-    };
+  
     const data = new FormData();
     setGender(ManSelected ? 'Man' : 'Woman');
     data.append('firstName', firstName);
@@ -74,11 +70,12 @@ export default function Signup() {
       password,
       isInstructor
     );
+
     axios
       .post('http://localhost:5000/user/register', data)
       .then((response) => {
         console.log(response);
-        navigate('/login');
+        navigate('/');
         Reinitialize();
       })
       .catch((err) => {
@@ -90,7 +87,9 @@ export default function Signup() {
     <div>
       <Brand />
       <div className="main">
-        <form className="Auth-form">
+        <form className="Auth-form" onSubmit={ (e) => {
+                    handleRegister(e);
+                  }}>
           <div className="Auth-form-content">
             <h3 className="Auth-form-title"> Create account :</h3>
             <div className="name">
@@ -168,10 +167,9 @@ export default function Signup() {
                       class="form-check-input"
                       type="checkbox"
                       value=""
-                      id="flexCheckDefault"
+                      id="flexCheck"
                       disabled={WomanSelected}
                       onClick={toggleMan}
-                      required
                     />
                     <span class="form-check-label" for="flexCheckDefault">
                       Male{' '}
@@ -186,7 +184,7 @@ export default function Signup() {
                       id="flexCheckDefault"
                       disabled={ManSelected}
                       onClick={toggleWoman}
-                      required
+                      
                     />
                     <span class="form-check-label" for="flexCheckChecked">
                       Female
@@ -236,9 +234,7 @@ export default function Signup() {
                 <button
                   type="submit"
                   className="btn btn-primary"
-                  onClick={(e) => {
-                    handleRegister(e);
-                  }}
+                
                 >
                   Submit
                 </button>

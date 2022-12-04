@@ -52,13 +52,17 @@ export default function Students() {
     }
   };
 
-  axios
+  useEffect(() => {
+   axios
     .get('http://localhost:5000/user/check?isInstructor', config)
     .then((response) => {
       setDataLoaded(true);
       setStudentList(response.data.filteredUsers);
     })
     .catch((err) => console.log(err.stack));
+  }, [])
+
+ 
 
   useEffect(() => {
     document.addEventListener('mousedown', (event) => {

@@ -4,6 +4,7 @@ import Brand from '../../Brand';
 import { userContext } from '../../../utils/context/user';
 import { useNavigate } from 'react-router-dom';
 import { InstructorContext } from '../../../utils/context';
+import { Link } from 'react-router-dom';
 
 import axios from 'axios';
 
@@ -27,7 +28,7 @@ export default function Login() {
     .then((response) => {
       setUser(response.data);
       setInstructor(response.data.isInstructor)
-      response.data.isInstructor ? navigate('/homeinstructor') : navigate('/homestudent')
+      response.data.isInstructor ? navigate('/homeinstructor/dashboard') : navigate('/homestudent/dashboard')
     }) 
     .catch((err) => {
       console.log(err.stack);
@@ -78,7 +79,7 @@ export default function Login() {
               </button>
             </div>
             <p className="forgot-password text-right mt-2">
-              Do not have an account ?<a href="#"> Sign Up</a>
+              Do not have an account ?<Link style={{textDecoration:'none'}} to='/welcome'> Sign Up</Link>
             </p>
           </div>
         </form>
