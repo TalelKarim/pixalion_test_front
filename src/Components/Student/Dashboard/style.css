@@ -1,11 +1,11 @@
-.Main{
-    width: 100%;
-    height: 100vh;
+.Main {
+  width: 100%;
+  height: 100vh;
 }
 
-.metrics{
-    height: 80%;
-    display: flex;
-    flex-wrap: wrap;
-    padding: 100px 139px;
+.metrics {
+  height: 80%;
+  display: flex;
+  flex-wrap: wrap;
+  padding: 100px 139px;
 }

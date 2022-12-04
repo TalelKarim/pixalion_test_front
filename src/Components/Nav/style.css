@@ -2,108 +2,98 @@
     DEMO STYLE
 */
 
-@import "https://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700";
+@import 'https://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700';
 body {
-    font-family: 'Poppins', sans-serif;
-    background: #fafafa;
+  font-family: 'Poppins', sans-serif;
+  background: #fafafa;
 }
 
 p {
-    font-family: 'Poppins', sans-serif;
-    font-size: 1.1em;
-    font-weight: 300;
-    line-height: 1.7em;
-    color: #999;
+  font-family: 'Poppins', sans-serif;
+  font-size: 1.1em;
+  font-weight: 300;
+  line-height: 1.7em;
+  color: #999;
 }
 
-
-
-
 .navbar {
-    padding: 15px 10px;
-    background: #fff;
-    border: none;
-    border-radius: 0;
-    margin-bottom: 40px;
-    box-shadow: 1px 1px 3px rgba(0, 0, 0, 0.1);
+  padding: 15px 10px;
+  background: #fff;
+  border: none;
+  border-radius: 0;
+  margin-bottom: 40px;
+  box-shadow: 1px 1px 3px rgba(0, 0, 0, 0.1);
 }
 
 .navbar-btn {
-    box-shadow: none;
-    outline: none !important;
-    border: none;
+  box-shadow: none;
+  outline: none !important;
+  border: none;
 }
 
 .line {
-    width: 100%;
-    height: 1px;
-    border-bottom: 1px dashed #ddd;
-    margin: 40px 0;
+  width: 100%;
+  height: 1px;
+  border-bottom: 1px dashed #ddd;
+  margin: 40px 0;
 }
 
 /* ---------------------------------------------------
     SIDEBAR STYLE
 ----------------------------------------------------- */
 
-
 #sidebar {
-    min-width: 250px;
-    max-width: 250px;
-    min-height: 100vh;
-    background: #33383e;
-    /* background-color: #252425; */
-    color: #9c9fa2;
-    transition: all 0.3s;
+  min-width: 250px;
+  max-width: 250px;
+  min-height: 100vh;
+  background: #33383e;
+  /* background-color: #252425; */
+  color: #9c9fa2;
+  transition: all 0.3s;
 }
 
 #sidebar.active {
-    margin-left: -250px;
+  margin-left: -250px;
 }
 
 #sidebar .sidebar-header {
-    padding: 30px;
+  padding: 30px;
 }
 
 #sidebar ul.components {
-    padding: 20px 0;
-    border-bottom: 1px solid #33383e;
+  padding: 20px 0;
+  border-bottom: 1px solid #33383e;
 }
 
 #sidebar ul p {
-    color: #9c9fa2;
-    padding: 10px;
+  color: #9c9fa2;
+  padding: 10px;
 }
 
-#sidebar ul li  {
-    padding: 10px;
-    font-size: 1.1em;
-    display: block;
-    display: flex;
-    align-items: center;
-    justify-content: flex-start;
-    padding-left: 25px;
-    transition: 0.7s ease;
+#sidebar ul li {
+  padding: 10px;
+  font-size: 1.1em;
+  display: block;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  padding-left: 25px;
+  transition: 0.7s ease;
 }
 
-#sidebar ul li:hover{
-    transform: scale(1.07);
+#sidebar ul li:hover {
+  transform: scale(1.07);
 }
-
-
-
-
-
-
 
 a.download {
-    background: #fff;
-    color: #9c9fa2;
+  background: #fff;
+  color: #9c9fa2;
 }
 
 a.article,
 a.article:hover {
-    background: #6d7fcc !important;
-    color: #fff !important;
+  background: #6d7fcc !important;
+  color: #fff !important;
 }
 
 /* ---------------------------------------------------
@@ -111,10 +101,10 @@ a.article:hover {
 ----------------------------------------------------- */
 
 #content {
-    width: 100%;
-    padding: 20px;
-    min-height: 100vh;
-    transition: all 0.3s;
+  width: 100%;
+  padding: 20px;
+  min-height: 100vh;
+  transition: all 0.3s;
 }
 
 /* ---------------------------------------------------
@@ -122,33 +112,32 @@ a.article:hover {
 ----------------------------------------------------- */
 
 @media (max-width: 768px) {
-    #sidebar {
-        margin-left: -250px;
-    }
-    #sidebar.active {
-        margin-left: 0;
-    }
-    #sidebarCollapse span {
-        display: none;
-    }
+  #sidebar {
+    margin-left: -250px;
+  }
+  #sidebar.active {
+    margin-left: 0;
+  }
+  #sidebarCollapse span {
+    display: none;
+  }
 }
 
-.profile{
-    height: 80px;
-    width: 80px;
-    border-radius: 50%;
+.profile {
+  height: 80px;
+  width: 80px;
+  border-radius: 50%;
 }
 
-
-.sidebar-header{
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    background-color: #33383e;
-    /* background-color: #252425; */
-    color: #fff;
+.sidebar-header {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background-color: #33383e;
+  /* background-color: #252425; */
+  color: #fff;
 }
 
-.dropicon{
-    margin-right: 5px;
+.dropicon {
+  margin-right: 5px;
 }

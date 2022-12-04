@@ -1,70 +1,64 @@
-
-.coursecard{
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    box-shadow: 0 5px 25px rgba(1 1 1/ 15% );
-    padding: 35px 20px 20px 20px ;
-    margin: 18px;
-    transition: 00.7s ease;
-    border-radius: 10px;
-    height:auto;
-    width:330px;
-
+.coursecard {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 5px 25px rgba(1 1 1/ 15%);
+  padding: 35px 20px 20px 20px;
+  margin: 18px;
+  transition: 00.7s ease;
+  border-radius: 10px;
+  height: auto;
+  width: 330px;
 }
 
-.coursename{
-    color: #000;
-    text-align: center;
-    display: flex;
-    justify-content: center;
-    margin-bottom: 15px;
+.coursename {
+  color: #000;
+  text-align: center;
+  display: flex;
+  justify-content: center;
+  margin-bottom: 15px;
 }
 
-.coursecard:hover{
-    transform: scale(1.1);
+.coursecard:hover {
+  transform: scale(1.1);
 }
-.coursecard .info{
-     text-align: center;
-     font-family: 'Poppins', sans-serif;
-
-}
-
-
-#course_picture{
-    text-align: center;
-     min-width: 90%;
-     min-height: 150px;
-     border-radius: 5px;
-
+.coursecard .info {
+  text-align: center;
+  font-family: 'Poppins', sans-serif;
 }
 
-.category{
-    margin-top: -20px;
-    font-size: 0.85em;
+#course_picture {
+  text-align: center;
+  min-width: 90%;
+  min-height: 150px;
+  border-radius: 5px;
 }
 
-.Description{
-    font-size: 0.86em;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    margin-top: -10px;
-    color: #000;
-    cursor: pointer;
-    width: 80%;
-    margin-left: 30px;
+.category {
+  margin-top: -20px;
+  font-size: 0.85em;
 }
 
+.Description {
+  font-size: 0.86em;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: -10px;
+  color: #000;
+  cursor: pointer;
+  width: 80%;
+  margin-left: 30px;
+}
 
-.Enroll{
-    width: 120px;
-    font-size: 0.8em;
-    height: 30px;
-    border: none;
-    background-color: #24953d;
-    color: #fff;
-    border-radius: 10px;
-    margin-top: -27px;
+.Enroll {
+  width: 120px;
+  font-size: 0.8em;
+  height: 30px;
+  border: none;
+  background-color: #24953d;
+  color: #fff;
+  border-radius: 10px;
+  margin-top: -27px;
 }
