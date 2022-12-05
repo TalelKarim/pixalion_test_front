@@ -13,9 +13,9 @@ import { InstructorContext } from '../../utils/context';
 import { userContext } from '../../utils/context/user';
 import Button from 'react-bootstrap/Button';
 import Modal from 'react-bootstrap/Modal';
-import {faDollar} from  '@fortawesome/free-solid-svg-icons';
+import { faDollar } from '@fortawesome/free-solid-svg-icons';
 import axios from 'axios';
-import { useNavigate } from 'react-router-dom'; 
+import { useNavigate } from 'react-router-dom';
 
 const StyledLink = styled(Link)`
   padding: 5px;
@@ -29,16 +29,14 @@ const StyledLink = styled(Link)`
 `;
 
 export default function Nav() {
-   const {user,setUser} = useContext(userContext);
+  const { user, setUser } = useContext(userContext);
   const { instructor, setInstructor } = useContext(InstructorContext);
 
+  const [show, setShow] = useState(false);
+  const handleClose = () => setShow(false);
+  const handleShow = () => setShow(true);
 
-   const [show, setShow] = useState(false);
-    const handleClose = () => setShow(false);
-    const handleShow = () => setShow(true);
-
-
-    ///data to update profile 
+  ///data to update profile
   const navigate = useNavigate();
   const [firstName, setfirstName] = useState(user.firstName);
   const [lastName, setlastName] = useState(user.lastName);
@@ -47,19 +45,24 @@ export default function Nav() {
   const [gender, setGender] = useState(user.gender);
   const [speciality, setSpeciality] = useState(user.speciality);
   const [mail, setMail] = useState(user.mail);
-  const [password, setPassword] = useState("0000");
+  const [password, setPassword] = useState('0000');
   const [file, setFile] = useState(null);
   const isInstructor = instructor;
 
   const initializeUser = () => {
-    setUser({})
-  }
+    setUser({});
+  };
+
+  const config = {
+    headers: {
+      Authorization: `Bearer ${user.token}`,
+    },
+  };
 
 
   const handleSubmit = (e) => {
     e.preventDefault();
 
-  
     const data = new FormData();
     data.append('firstName', firstName);
     data.append('lastName', lastName);
@@ -69,30 +72,25 @@ export default function Nav() {
     data.append('mail', mail);
     data.append('speciality', speciality);
     data.append('isInstructor', isInstructor);
-    data.append('password', password)
-    data.append('imageUrl', user.imageUrl)
-   
+    data.append('password', password);
+    data.append('imageUrl', user.imageUrl);
+
     axios
-      .put( `http://localhost:5000/user/update/${user._id}`, data)
+      .put(`http://localhost:5000/user/update/${user._id}`, data, config)
       .then((response) => {
-          console.log(response)
-          setUser(response.data)
+        console.log(response.data);
+        setUser(response.data);
       })
       .catch((err) => {
         console.log(err.stack);
       });
   };
 
-
   console.log(user);
   return (
     <nav id="sidebar">
       <div className="sidebar-header">
-        <img
-          src={user.imageUrl}
-          alt="student picture"
-          className="profile"
-        />
+        <img src={user.imageUrl} alt="student picture" className="profile" />
         <h6> {`${user.firstName} ${user.lastName}`}</h6>
       </div>
 
@@ -131,57 +129,62 @@ export default function Nav() {
         </li>
         <li>
           <FontAwesomeIcon className="dropicon" icon={faUser} />
-          <StyledLink 
+          <StyledLink
             onClick={() => {
-               setShow(true)
+              setShow(true);
             }}
-          > My Profile </StyledLink>
+          >
+            {' '}
+            My Profile{' '}
+          </StyledLink>
         </li>
         <li>
           <FontAwesomeIcon className="dropicon" icon={faRightFromBracket} />
-          <StyledLink to='/'  onClick = {initializeUser}> Sign Out</StyledLink>
+          <StyledLink to="/" onClick={initializeUser}>
+            {' '}
+            Sign Out
+          </StyledLink>
         </li>
-        
-      <Modal show={show} onHide={handleClose}>
-        <Modal.Header closeButton>
-          <div className="previewtitlecourse">
+
+        <Modal show={show} onHide={handleClose}>
+          <Modal.Header closeButton>
+            <div className="previewtitlecourse">
               <Modal.Title>
-         <FontAwesomeIcon className='updateIcon' icon={faPen} />
+                <FontAwesomeIcon className="updateIcon" icon={faPen} />
+                Update your profile
+              </Modal.Title>
+            </div>
+          </Modal.Header>
+          <Modal.Body>
+            <img className="previewimgcourse" src={user.imageUrl} />
 
-                 Update your profile</Modal.Title>
-          </div>
-        </Modal.Header>
-        <Modal.Body>
-             <img className='previewimgcourse' src={user.imageUrl} />
-        
-        <div className="form-group mt-1" id="first_name">
-                <label>First Name</label>
-                <input
-                  type="text"
-                  className="form-control mt-1"
-                  placeholder="new firstname"
-                  onChange={(e) => {
-                    setfirstName(e.target.value);
-                  }}
-                  defaultValue={user.firstName}
-                  required
-                />
-              </div>
+            <div className="form-group mt-1" id="first_name">
+              <label>First Name</label>
+              <input
+                type="text"
+                className="form-control mt-1"
+                placeholder="new firstname"
+                onChange={(e) => {
+                  setfirstName(e.target.value);
+                }}
+                defaultValue={user.firstName}
+                required
+              />
+            </div>
 
-             <div className="form-group mt-1">
-                <label>Last name</label>
-                <input
-                  type="text"
-                  className="form-control mt-1"
-                  placeholder="new lastname"
-                  onChange={(e) => {
-                    setlastName(e.target.value);
-                  }}
-                  required
-                  defaultValue={user.lastName}
-                />
-              </div>
-            
+            <div className="form-group mt-1">
+              <label>Last name</label>
+              <input
+                type="text"
+                className="form-control mt-1"
+                placeholder="new lastname"
+                onChange={(e) => {
+                  setlastName(e.target.value);
+                }}
+                required
+                defaultValue={user.lastName}
+              />
+            </div>
 
             <div className="form-group mt-1">
               <label>Nickname</label>
@@ -194,11 +197,10 @@ export default function Nav() {
                   setnickName(e.target.value);
                 }}
                 defaultValue={user.nickName}
-
               />
             </div>
 
-             <div className="form-group mt-1">
+            <div className="form-group mt-1">
               <label for="birthday">Speciality:</label>
               <input
                 type="text"
@@ -226,51 +228,49 @@ export default function Nav() {
               />
             </div>
 
-           
+            <div className="form-group mt-1">
+              <label>Email account</label>
+              <input
+                type="email"
+                className="form-control mt-1"
+                placeholder="new email"
+                required
+                onChange={(e) => {
+                  setMail(e.target.value);
+                }}
+                defaultValue={user.mail}
+              />
+            </div>
 
-                 <div className="form-group mt-1">
-                <label>Email account</label>
-                <input
-                  type="email"
-                  className="form-control mt-1"
-                  placeholder="new email"
-                  required
-                  onChange={(e) => {
-                    setMail(e.target.value);
-                  }}
-                  defaultValue={user.mail}
-                />
-                 </div>
-
-                  <div className="form-group mt-1">
-                <label>Password</label>
-                <input
-                  type="password"
-                  className="form-control mt-1"
-                  placeholder="new password"
-                  required
-                  onChange={(e) => {
-                    setPassword(e.target.value);
-                  }}
-                  defaultValue={password}
-                />
-              </div>
-              
-              
-
-        </Modal.Body>
-        <Modal.Footer>
-          <Button variant="secondary" onClick={handleClose}>
-            Close
-          </Button>
-          <Button variant="primary" onClick={(e) => {
-            handleSubmit(e)
-            handleClose()
-          }}>
-            Apply Changes
-          </Button>
-        </Modal.Footer>
-      </Modal>
+            <div className="form-group mt-1">
+              <label>Password</label>
+              <input
+                type="password"
+                className="form-control mt-1"
+                placeholder="new password"
+                required
+                onChange={(e) => {
+                  setPassword(e.target.value);
+                }}
+                defaultValue={password}
+              />
+            </div>
+          </Modal.Body>
+          <Modal.Footer>
+            <Button variant="secondary" onClick={handleClose}>
+              Close
+            </Button>
+            <Button
+              variant="primary"
+              onClick={(e) => {
+                handleSubmit(e);
+                handleClose();
+              }}
+            >
+              Apply Changes
+            </Button>
+          </Modal.Footer>
+        </Modal>
       </ul>
     </nav>
   );

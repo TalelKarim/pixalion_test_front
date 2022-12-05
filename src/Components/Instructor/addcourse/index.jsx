@@ -5,6 +5,7 @@ import axios from 'axios';
 import DateObject from 'react-date-object';
 import { userContext } from '../../../utils/context/user';
 import { useContext } from 'react';
+import { InstructorContext } from '../../../utils/context';
 
 import './style.css';
 export default function AddCourse() {
@@ -13,19 +14,19 @@ export default function AddCourse() {
   const [Description, setDescription] = useState('');
   const [Category, setCategory] = useState('');
   const [file, setFile] = useState(null);
-
+  const { instructor, setInstructor } = useContext(InstructorContext);
   const [show, setShow] = useState(false);
 
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
- 
-    const {user, setUser} = useContext(userContext)
 
-       const config = {
-        headers: {
-          Authorization: `Bearer ${user.token}`,
-        },
-      };
+  const { user, setUser } = useContext(userContext);
+
+  const config = {
+    headers: {
+      Authorization: `Bearer ${user.token}`,
+    },
+  };
 
   var date = new DateObject();
 
@@ -46,7 +47,6 @@ export default function AddCourse() {
   };
 
   const handleSubmit = (e) => {
-   
     var date = new DateObject();
     const data = new FormData();
     data.append('Name', Name);
@@ -68,7 +68,7 @@ export default function AddCourse() {
 
   return (
     <>
-      <Button variant="primary" onClick={handleShow}>
+      <Button disabled={!instructor} variant="primary" onClick={handleShow}>
         Add Course
       </Button>
 
@@ -88,7 +88,7 @@ export default function AddCourse() {
             <input
               type="text"
               className="form-control mt-1"
-              placeholder="Enter first name"
+              placeholder="Enter Course Title"
               required
               onChange={(e) => {
                 setName(e.target.value);
@@ -100,7 +100,7 @@ export default function AddCourse() {
             <input
               type="text"
               className="form-control mt-1"
-              placeholder="Enter first name"
+              placeholder="Enter Course Category"
               required
               onChange={(e) => {
                 setCategory(e.target.value);
@@ -112,7 +112,7 @@ export default function AddCourse() {
             <textarea
               type="text"
               className="form-control mt-1"
-              placeholder="Enter first name"
+              placeholder="Write a brief Description..."
               required
               onChange={(e) => {
                 setDescription(e.target.value);

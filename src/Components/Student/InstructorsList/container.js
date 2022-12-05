@@ -3,8 +3,6 @@ import styled from 'styled-components';
 import Cards from '../../Cards';
 import { useState } from 'react';
 
-
-
 const Content = styled.div`
   height: auto;
   width: 100%;
@@ -12,7 +10,6 @@ const Content = styled.div`
   flex-wrap: wrap;
 `;
 export default function Container(props) {
-  
   return (
     <Content>
       {props.instructorsList.map((ele) => {
@@ -22,11 +19,9 @@ export default function Container(props) {
             name={ele.firstName + ' ' + ele.lastName}
             domain={ele.speciality}
             mail={ele.mail}
-            
           />
         );
       })}
-
     </Content>
   );
 }

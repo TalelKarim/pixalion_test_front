@@ -4,8 +4,7 @@ import './style.css';
 export default function Brand() {
   return (
     <i className="brand">
-      {' '}
-      Perfect<i>Learn</i>
+      Pixalione<i>Learn</i>
     </i>
   );
 }

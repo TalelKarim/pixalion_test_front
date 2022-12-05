@@ -4,8 +4,7 @@ import './style.css';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faMagnifyingGlass } from '@fortawesome/free-solid-svg-icons';
 import CourseAvatar from '../Avatars/CourseAvater';
-import { Loader } from '../../utils/Atoms';
-import CourseCard from '../coursecard';
+import { Loader } from '../../utils/style/Atoms';
 import AddCourse from '../Instructor/addcourse';
 import Container from './container';
 import Pagination from './pagination';
@@ -27,14 +26,13 @@ export default function Courses() {
   const indexOfFirstItem = indexOfLastItem - itemsPerPage;
   const currentItems = coursesList.slice(indexOfFirstItem, indexOfLastItem);
 
-  const {user, setUser} = useContext(userContext)
+  const { user, setUser } = useContext(userContext);
 
-
-    const config = {
-        headers: {
-          Authorization: `Bearer ${user.token}`,
-        },
-      };
+  const config = {
+    headers: {
+      Authorization: `Bearer ${user.token}`,
+    },
+  };
   //change page
   const paginateItems = (pageNumber) => setCurrentPage(pageNumber);
 
@@ -44,7 +42,8 @@ export default function Courses() {
     try {
       setLoading(true);
       const { data } = await axios.get(
-        `http://localhost:5000/course/filter?search=${search}`, config
+        `http://localhost:5000/course/filter?search=${search}`,
+        config
       );
       setLoading(false);
       setSearchResult(data);
@@ -52,15 +51,16 @@ export default function Courses() {
       console.log(error);
     }
   };
- 
-   useEffect(() => { axios
-    .get('http://localhost:5000/course', config)
-    .then((response) => {
-      setDataLoaded(true);
-      setcoursesList(response.data);
-    })
-    .catch((err) => console.log(err.stack));}, [])
- 
+
+  useEffect(() => {
+    axios
+      .get('http://localhost:5000/course', config)
+      .then((response) => {
+        setDataLoaded(true);
+        setcoursesList(response.data);
+      })
+      .catch((err) => console.log(err.stack));
+  }, []);
 
   useEffect(() => {
     document.addEventListener('mousedown', (event) => {
@@ -114,7 +114,7 @@ export default function Courses() {
                       photo={ele.imageUrl}
                       name={ele.Name}
                       category={ele.Category}
-                      description = {ele.Description}
+                      description={ele.Description}
                     />
                   );
                 })

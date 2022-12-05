@@ -9,7 +9,7 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 ReactDOM.render(
   <InstructorProvider>
     <UserProvider>
-       <App />
+      <App />
     </UserProvider>
   </InstructorProvider>,
   document.getElementById('root')

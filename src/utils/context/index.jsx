@@ -3,7 +3,7 @@ import { createContext, useState } from 'react';
 export const InstructorContext = createContext();
 
 export const InstructorProvider = ({ children }) => {
-  const [instructor, setInstructor] = useState(false);
+  const [instructor, setInstructor] = useState(true);
 
   return (
     <InstructorContext.Provider value={{ instructor, setInstructor }}>

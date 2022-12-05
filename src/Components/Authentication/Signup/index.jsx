@@ -46,7 +46,6 @@ export default function Signup() {
   const handleRegister = (e) => {
     e.preventDefault();
 
-  
     const data = new FormData();
     setGender(ManSelected ? 'Man' : 'Woman');
     data.append('firstName', firstName);
@@ -59,7 +58,7 @@ export default function Signup() {
     data.append('speciality', speciality);
     data.append('isInstructor', isInstructor);
     data.append('photo', file);
-    
+
     axios
       .post('http://localhost:5000/user/register', data)
       .then((response) => {
@@ -76,9 +75,12 @@ export default function Signup() {
     <div>
       <Brand />
       <div className="main">
-        <form className="Auth-form" onSubmit={ (e) => {
-                    handleRegister(e);
-                  }}>
+        <form
+          className="Auth-form"
+          onSubmit={(e) => {
+            handleRegister(e);
+          }}
+        >
           <div className="Auth-form-content">
             <h3 className="Auth-form-title"> Create account :</h3>
             <div className="name">
@@ -173,7 +175,6 @@ export default function Signup() {
                       id="flexCheckDefault"
                       disabled={ManSelected}
                       onClick={toggleWoman}
-                      
                     />
                     <span class="form-check-label" for="flexCheckChecked">
                       Female
@@ -220,16 +221,12 @@ export default function Signup() {
               </div>
 
               <div className="d-grid gap-2 mt-3">
-                <button
-                  type="submit"
-                  className="btn btn-primary"
-                
-                >
+                <button type="submit" className="btn btn-primary">
                   Submit
                 </button>
               </div>
               <p className="forgot-password text-right mt-2">
-                Already have an account ?<Link to="/login"> Login</Link>
+                Already have an account ?<Link to="/"> Login</Link>
               </p>
             </div>
           </div>

@@ -2,10 +2,9 @@ import React, { useContext } from 'react';
 import './style.css';
 import Brand from '../Brand';
 import styled from 'styled-components';
-import { useState } from 'react';
 import { InstructorContext } from '../../utils/context';
 import { useNavigate } from 'react-router-dom';
-
+import { Link } from 'react-router-dom';
 export default function Welcome() {
   const { instructor, setInstructor } = useContext(InstructorContext);
   const navigate = useNavigate();
@@ -87,7 +86,10 @@ export default function Welcome() {
               setInstructor(true);
             }}
           >
-            <img src="https://images.unsplash.com/photo-1493612276216-ee3925520721?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=464&q=80" />
+            <img
+              src="https://images.unsplash.com/photo-1493612276216-ee3925520721?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=464&q=80"
+              alt="img"
+            />
             <b> I am an instructor, giving courses</b>
           </OptionInstructor>
 
@@ -96,7 +98,10 @@ export default function Welcome() {
               setInstructor(false);
             }}
           >
-            <img src="https://images.unsplash.com/photo-1503676382389-4809596d5290?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1176&q=80" />
+            <img
+              src="https://images.unsplash.com/photo-1503676382389-4809596d5290?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1176&q=80"
+              alt="img"
+            />
             <b> I am a student, I am here to learn</b>
           </OptionStudent>
         </Middle>
@@ -112,7 +117,7 @@ export default function Welcome() {
           </button>
         </div>
         <p className="forgot-password text-right mt-2">
-          Already have an account ?<a href="#"> Login</a>
+          Already have an account ?<Link to="/"> Login</Link>
         </p>
       </Main>
     </>

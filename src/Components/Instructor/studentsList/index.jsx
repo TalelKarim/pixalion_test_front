@@ -5,7 +5,7 @@ import './style.css';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faMagnifyingGlass } from '@fortawesome/free-solid-svg-icons';
 import UserAvatar from '../../Avatars/UserAvatar';
-import { Loader } from '../../../utils/Atoms';
+import { Loader } from '../../../utils/style/Atoms';
 import styled from 'styled-components';
 import Pagination from './pagination';
 import Container from './container';
@@ -19,7 +19,7 @@ export default function Students() {
   const [open, setOpen] = useState(false);
   const [dataLoaded, setDataLoaded] = useState(true);
 
-  const {user, setUser} = useContext(userContext)
+  const { user, setUser } = useContext(userContext);
 
   /// pagination
   const [currentPage, setCurrentPage] = useState(1);
@@ -33,17 +33,18 @@ export default function Students() {
 
   let menuRef = useRef();
 
-     const config = {
-        headers: {
-          Authorization: `Bearer ${user.token}`,
-        },
-      };
+  const config = {
+    headers: {
+      Authorization: `Bearer ${user.token}`,
+    },
+  };
 
   const handleSearch = async () => {
     try {
       setLoading(true);
       const { data } = await axios.get(
-        `http://localhost:5000/user/filter?search=${search}&isInstructor`, config
+        `http://localhost:5000/user/filter?search=${search}&isInstructor`,
+        config
       );
       setLoading(false);
       setSearchResult(data);
@@ -53,16 +54,14 @@ export default function Students() {
   };
 
   useEffect(() => {
-   axios
-    .get('http://localhost:5000/user/check?isInstructor', config)
-    .then((response) => {
-      setDataLoaded(true);
-      setStudentList(response.data.filteredUsers);
-    })
-    .catch((err) => console.log(err.stack));
-  }, [])
-
- 
+    axios
+      .get('http://localhost:5000/user/check?isInstructor', config)
+      .then((response) => {
+        setDataLoaded(true);
+        setStudentList(response.data.filteredUsers);
+      })
+      .catch((err) => console.log(err.stack));
+  }, []);
 
   useEffect(() => {
     document.addEventListener('mousedown', (event) => {

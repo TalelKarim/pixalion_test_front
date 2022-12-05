@@ -9,38 +9,37 @@ import { Link } from 'react-router-dom';
 import axios from 'axios';
 
 export default function Login() {
-  const {user,setUser} = useContext(userContext);
+  const { user, setUser } = useContext(userContext);
   const [mail, setMail] = useState('');
   const [password, setPassword] = useState('');
   const { instructor, setInstructor } = useContext(InstructorContext);
 
-
-  const navigate = useNavigate()
+  const navigate = useNavigate();
 
   const handleSubmit = (e) => {
-       e.preventDefault();
-      
+    e.preventDefault();
+
     const data = new FormData();
-    data.append("mail", mail);
-    data.append("password", password);
+    data.append('mail', mail);
+    data.append('password', password);
 
-    axios.post('http://localhost:5000/user/login', data)
-    .then((response) => {
-      setUser(response.data);
-      setInstructor(response.data.isInstructor)
-      response.data.isInstructor ? navigate('/homeinstructor/dashboard') : navigate('/homestudent/dashboard')
-    }) 
-    .catch((err) => {
-      console.log(err.stack);
-      alert('invalid credentials')
-    })
-    console.log(mail,
-       password)
-  }
+    axios
+      .post('http://localhost:5000/user/login', data)
+      .then((response) => {
+        setUser(response.data);
+        setInstructor(response.data.isInstructor);
+        response.data.isInstructor
+          ? navigate('/homeinstructor/dashboard')
+          : navigate('/homestudent/dashboard');
+      })
+      .catch((err) => {
+        console.log(err.stack);
+        alert('invalid credentials');
+      });
+    console.log(mail, password);
+  };
 
-
-
-  console.log(user, user.token , instructor)
+  console.log(user, user.token, instructor);
   return (
     <div>
       <Brand />
@@ -56,7 +55,7 @@ export default function Login() {
                 placeholder="Enter email"
                 required
                 onChange={(e) => {
-                  setMail(e.target.value)
+                  setMail(e.target.value);
                 }}
               />
             </div>
@@ -67,24 +66,30 @@ export default function Login() {
                 className="form-control mt-1"
                 placeholder="Enter password"
                 required
-                onChange={ (e) => {
-                    setPassword(e.target.value)
-                } 
-                }
+                onChange={(e) => {
+                  setPassword(e.target.value);
+                }}
               />
             </div>
             <div className="d-grid gap-2 mt-3">
-              <button type="submit" className="btn btn-primary" onClick={handleSubmit}>
+              <button
+                type="submit"
+                className="btn btn-primary"
+                onClick={handleSubmit}
+              >
                 Submit
               </button>
             </div>
             <p className="forgot-password text-right mt-2">
-              Do not have an account ?<Link style={{textDecoration:'none'}} to='/welcome'> Sign Up</Link>
+              Do not have an account ?
+              <Link style={{ textDecoration: 'none' }} to="/welcome">
+                {' '}
+                Sign Up
+              </Link>
             </p>
           </div>
         </form>
       </div>
-    
     </div>
   );
 }

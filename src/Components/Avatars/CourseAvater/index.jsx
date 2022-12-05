@@ -4,12 +4,12 @@ import Button from 'react-bootstrap/Button';
 import Modal from 'react-bootstrap/Modal';
 import './style.css';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import {faDollar} from  '@fortawesome/free-solid-svg-icons';
+import { faDollar } from '@fortawesome/free-solid-svg-icons';
 
 export default function CourseAvatar(props) {
-    const [show, setShow] = useState(false);
-    const handleClose = () => setShow(false);
-    const handleShow = () => setShow(true);   
+  const [show, setShow] = useState(false);
+  const handleClose = () => setShow(false);
+  const handleShow = () => setShow(true);
   return (
     <div className="courseAvatar" onClick={handleShow}>
       <img src={props.photo} alt="photo avatar" id="photoavatar" />
@@ -18,21 +18,21 @@ export default function CourseAvatar(props) {
         <span className="categorycourse">{props.category}</span>
       </div>
 
-       <Modal show={show} onHide={handleClose}>
+      <Modal show={show} onHide={handleClose}>
         <Modal.Header closeButton>
           <div className="previewtitlecourse">
-              <Modal.Title> {props.name}</Modal.Title>
+            <Modal.Title> {props.name}</Modal.Title>
           </div>
         </Modal.Header>
         <Modal.Body>
-             <img className='previewimgcourse' src={props.photo} />
-             <p className="previewspeciality">{props.category}</p>
-            <p className="previewdescription">{props.description}</p>
-
+          <img className="previewimgcourse" src={props.photo} />
+          <p className="previewspeciality">{props.category}</p>
+          <p className="previewdescription">{props.description}</p>
         </Modal.Body>
         <Modal.Footer>
           <div className="price">
-              <span>{Math.floor((Math.random() * 30) + 60)}</span>   <FontAwesomeIcon className="dropicon" icon={faDollar} />
+            <span>{Math.floor(Math.random() * 30 + 60)}</span>{' '}
+            <FontAwesomeIcon className="dropicon" icon={faDollar} />
           </div>
           <Button variant="secondary" onClick={handleClose}>
             Close
@@ -42,7 +42,6 @@ export default function CourseAvatar(props) {
           </Button>
         </Modal.Footer>
       </Modal>
-
     </div>
   );
 }

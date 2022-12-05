@@ -1,11 +1,10 @@
 import React, { useContext, useEffect, useRef, useState } from 'react';
 import axios from 'axios';
-import Cards from '../../Cards';
 import './style.css';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faMagnifyingGlass } from '@fortawesome/free-solid-svg-icons';
 import UserAvatar from '../../Avatars/UserAvatar';
-import { Loader } from '../../../utils/Atoms';
+import { Loader } from '../../../utils/style/Atoms';
 import Pagination from './pagination';
 import Container from './container';
 import { userContext } from '../../../utils/context/user';
@@ -17,9 +16,9 @@ export default function Instructors() {
   const [search, setSearch] = useState('');
   const [open, setOpen] = useState(false);
   const [dataLoaded, setDataLoaded] = useState(false);
-  
-  const {user, setUser} = useContext(userContext)
-  
+
+  const { user, setUser } = useContext(userContext);
+
   /// pagination
   const [currentPage, setCurrentPage] = useState(1);
   const [itemsPerPage, setItemPerPage] = useState(9);
@@ -31,17 +30,18 @@ export default function Instructors() {
   const paginateItems = (pageNumber) => setCurrentPage(pageNumber);
   let menuRef = useRef();
 
-   const config = {
-        headers: {
-          Authorization: `Bearer ${user.token}`,
-        },
-      };
+  const config = {
+    headers: {
+      Authorization: `Bearer ${user.token}`,
+    },
+  };
 
   const handleSearch = async () => {
     try {
       setLoading(true);
       const { data } = await axios.get(
-        `http://localhost:5000/user/filter?search=${search}&isInstructor=true`, config
+        `http://localhost:5000/user/filter?search=${search}&isInstructor=true`,
+        config
       );
       setLoading(false);
       setSearchResult(data);
@@ -51,16 +51,15 @@ export default function Instructors() {
   };
 
   useEffect(() => {
-   axios
-    .get('http://localhost:5000/user/check?isInstructor=true', config)
-    .then((response) => {
-      setDataLoaded(true);
-      setInstructorsList(response.data.filteredUsers);
-    })
-    .catch((err) => console.log(err.stack));
- 
-  }, [])
- 
+    axios
+      .get('http://localhost:5000/user/check?isInstructor=true', config)
+      .then((response) => {
+        setDataLoaded(true);
+        setInstructorsList(response.data.filteredUsers);
+      })
+      .catch((err) => console.log(err.stack));
+  }, []);
+
   useEffect(() => {
     document.addEventListener('mousedown', (event) => {
       if (!menuRef.current.contains(event.target)) {
@@ -121,7 +120,6 @@ export default function Instructors() {
             totalItems={instructorsList.length}
             paginateItems={paginateItems}
           />
-
         </div>
       ) : (
         <Loader />
