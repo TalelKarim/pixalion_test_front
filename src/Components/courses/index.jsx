@@ -42,7 +42,7 @@ export default function Courses() {
     try {
       setLoading(true);
       const { data } = await axios.get(
-        `http://localhost:5000/course/filter?search=${search}`,
+        `${process.env.REACT_APP_API_URL}/course/filter?search=${search}`,
         config
       );
       setLoading(false);
@@ -54,7 +54,7 @@ export default function Courses() {
 
   useEffect(() => {
     axios
-      .get('http://localhost:5000/course', config)
+      .get(`${process.env.REACT_APP_API_URL}/course`, config)
       .then((response) => {
         setDataLoaded(true);
         setcoursesList(response.data);

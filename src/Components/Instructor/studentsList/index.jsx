@@ -43,7 +43,7 @@ export default function Students() {
     try {
       setLoading(true);
       const { data } = await axios.get(
-        `http://localhost:5000/user/filter?search=${search}&isInstructor`,
+        `${process.env.REACT_APP_API_URL}/user/filter?search=${search}&isInstructor`,
         config
       );
       setLoading(false);
@@ -55,7 +55,7 @@ export default function Students() {
 
   useEffect(() => {
     axios
-      .get('http://localhost:5000/user/check?isInstructor', config)
+      .get(`${process.env.REACT_APP_API_URL}/user/check?isInstructor`, config)
       .then((response) => {
         setDataLoaded(true);
         setStudentList(response.data.filteredUsers);

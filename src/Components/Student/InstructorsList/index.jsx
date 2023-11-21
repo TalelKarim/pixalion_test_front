@@ -40,7 +40,7 @@ export default function Instructors() {
     try {
       setLoading(true);
       const { data } = await axios.get(
-        `http://localhost:5000/user/filter?search=${search}&isInstructor=true`,
+        `${process.env.REACT_APP_API_URL}/user/filter?search=${search}&isInstructor=true`,
         config
       );
       setLoading(false);
@@ -52,7 +52,7 @@ export default function Instructors() {
 
   useEffect(() => {
     axios
-      .get('http://localhost:5000/user/check?isInstructor=true', config)
+      .get(`${process.env.REACT_APP_API_URL}/user/check?isInstructor=true`, config)
       .then((response) => {
         setDataLoaded(true);
         setInstructorsList(response.data.filteredUsers);

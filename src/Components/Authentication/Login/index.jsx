@@ -24,7 +24,7 @@ export default function Login() {
     data.append('password', password);
 
     axios
-      .post('http://localhost:5000/user/login', data)
+      .post(`${process.env.REACT_APP_API_URL}/user/login`, data)
       .then((response) => {
         setUser(response.data);
         setInstructor(response.data.isInstructor);

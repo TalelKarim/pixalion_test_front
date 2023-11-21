@@ -56,7 +56,7 @@ export default function AddCourse() {
     data.append('photo', file);
 
     axios
-      .post('http://localhost:5000/course/register', data, config)
+      .post(`${process.env.REACT_APP_API_URL}/course/register`, data, config)
       .then((response) => {
         console.log(response);
         Reinitialize();

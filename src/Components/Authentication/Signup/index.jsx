@@ -60,7 +60,7 @@ export default function Signup() {
     data.append('photo', file);
 
     axios
-      .post('http://localhost:5000/user/register', data)
+      .post(`${process.env.REACT_APP_API_URL}/user/register`, data)
       .then((response) => {
         console.log(response);
         navigate('/');

@@ -76,7 +76,7 @@ export default function Nav() {
     data.append('imageUrl', user.imageUrl);
 
     axios
-      .put(`http://localhost:5000/user/update/${user._id}`, data, config)
+      .put(`${process.env.REACT_APP_API_URL}/user/update/${user._id}`, data, config)
       .then((response) => {
         console.log(response.data);
         setUser(response.data);
