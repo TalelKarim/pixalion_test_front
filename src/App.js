@@ -11,7 +11,8 @@ import Courses from './Components/courses';
 import DashboardInstructor from './Components/Instructor/Dashboard';
 import Students from './Components/Instructor/studentsList';
 import Error from './Components/Error';
-
+import HealthCheck
+ from './Components/HealthCheck';
 const GlobalStyle = createGlobalStyle`
   *{
     font-family: 'Poppins', sans-serif;
@@ -24,6 +25,7 @@ export default function App() {
       <GlobalStyle />
       <Routes>
         <Route path="/" element={<Login />} />
+        <Route path="/health" element={<HealthCheck />} />
         <Route path="/welcome" element={<Welcome />} />
         <Route path="/signup" element={<Signup />} />
         <Route path="/homestudent" element={<HomeStudent />}>
