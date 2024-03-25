@@ -7,7 +7,7 @@ build_image:
   stage: build
   image: docker:latest
   script:
-    - docker build -t ${DOCKER_REPOSITORY/pixalion_client -f docker/Dockerfile .
+    - docker build -t ${DOCKER_REPOSITORY}/pixalion_client -f docker/Dockerfile .
   only:
     - iac   
 
