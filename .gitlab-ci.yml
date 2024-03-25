@@ -10,7 +10,7 @@ build_image:
   only:
     - iac 
   tags:
-    - gitlab-org-docker  
+    - docker  
 
 
 
@@ -23,7 +23,7 @@ deploy_image:
   only:
     - iac 
   tags: 
-    - gitlab-org-docker
+    - docker
   
 
 
